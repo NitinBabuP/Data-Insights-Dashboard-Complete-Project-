@@ -3,5 +3,25 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-100 text-gray-800;
+  @apply bg-gray-50;
+}
+
+/* Modern card styling */
+.card {
+  @apply bg-white rounded-xl shadow-md overflow-hidden p-6 mb-6;
+}
+
+/* Elegant buttons */
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-all;
+}
+
+/* Better file input */
+.file-input {
+  @apply block w-full text-sm text-gray-500
+    file:mr-4 file:py-2 file:px-4
+    file:rounded-lg file:border-0
+    file:text-sm file:font-semibold
+    file:bg-indigo-50 file:text-indigo-700
+    hover:file:bg-indigo-100;
 }

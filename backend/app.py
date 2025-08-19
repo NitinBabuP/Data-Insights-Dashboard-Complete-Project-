@@ -1,4 +1,3 @@
-
 import os
 import pandas as pd
 from dotenv import load_dotenv
@@ -47,6 +46,24 @@ with app.app_context():
     db.create_all()
 
 # --- API Endpoints ---
+
+# Health check endpoint
+@app.route('/api/health', methods=['GET'])
+def health_check():
+    try:
+        # Test database connection
+        db.session.execute('SELECT 1')
+        return jsonify({
+            "status": "healthy",
+            "database": "connected",
+            "services": ["authentication", "file_processing", "predictions"]
+        }), 200
+    except Exception as e:
+        return jsonify({
+            "status": "unhealthy",
+            "error": str(e)
+        }), 500
+
 @app.route('/api/register', methods=['POST'])
 def register():
     data = request.get_json()
@@ -128,5 +145,3 @@ def predict():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
-
----
